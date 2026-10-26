@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TTS Matematika Kelas 8: Pythagoras dan PLSV</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f7;--grid:#dce6ef;--ink:#14213d;--muted:#52627a;--card:#fff;--cell:#fff;--act:#ffd95e;--wd:#cfe3ff;--ok:#12794d;--bad:#c8372d;--badbg:#fbdad6;--acc:#2f5bea;--accfg:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1829;--grid:#18243b;--ink:#e8eefb;--muted:#9fb0c9;--card:#17233a;--cell:#1d2b46;--act:#9a7a10;--wd:#24467f;--ok:#55d79b;--bad:#ff8b80;--badbg:#5a2220;--acc:#7fa0ff;--accfg:#0f1829}}
+:root[data-theme="dark"]{--bg:#0f1829;--grid:#18243b;--ink:#e8eefb;--muted:#9fb0c9;--card:#17233a;--cell:#1d2b46;--act:#9a7a10;--wd:#24467f;--ok:#55d79b;--bad:#ff8b80;--badbg:#5a2220;--acc:#7fa0ff;--accfg:#0f1829}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font-family:Lexend,system-ui,sans-serif;background-color:var(--bg);color:var(--ink);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:10}
+main{max-width:720px;margin:0 auto;padding:0 14px 40px}
+header{padding:20px 0 12px}
+h1{font-size:1.6rem;line-height:1.2;margin:0 0 4px}
+header p{margin:0;color:var(--muted);font-size:.95rem}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:10px 12px;margin:8px 0 12px;min-height:76px}
+.bar b{color:var(--acc)}
+.bar .note{margin-top:4px;font-size:.88rem;color:var(--ok);font-weight:600}
+.prog{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--muted);margin-bottom:6px}
+.track{flex:1;height:8px;background:var(--card);border:1.5px solid var(--ink);border-radius:6px;overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+.wrap{overflow-x:auto;padding:4px 0 10px}
+#grid{--s:max(26px,min(40px,calc((100vw - 28px)/15)));display:grid;grid-template-columns:repeat(15,var(--s));width:max-content;margin:0 auto}
+.cell{width:var(--s);height:var(--s);position:relative;display:flex;align-items:center;justify-content:center}
+.cell.on{background:var(--cell);border:1px solid var(--ink);cursor:pointer;font-weight:700;font-size:calc(var(--s)*.52)}
+.cell.on.wd{background:var(--wd)}
+.cell.on.cur{background:var(--act)}
+.cell.on.bad{background:var(--badbg);color:var(--bad)}
+.cell.on.ok{color:var(--ok)}
+.n{position:absolute;top:1px;left:2px;font-size:calc(var(--s)*.28);font-weight:600;color:var(--muted);line-height:1}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 20px}
+button{font:inherit;cursor:pointer}
+.btn{padding:9px 16px;border-radius:8px;border:2px solid var(--ink);background:var(--card);color:var(--ink);font-weight:600;font-size:.92rem}
+.btn.p{background:var(--acc);color:var(--accfg);border-color:var(--acc)}
+.btn:focus-visible,.cl button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+#msg{align-self:center;font-size:.88rem;color:var(--muted)}
+.clues{display:grid;gap:16px}
+@media(min-width:620px){.clues{grid-template-columns:1fr 1fr}}
+.cl{background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:12px 14px}
+.cl h2{font-size:1.05rem;margin:0 0 8px}
+.cl ol{list-style:none;margin:0;padding:0}
+.cl li{margin:0 0 4px}
+.cl button{display:flex;gap:8px;width:100%;text-align:left;background:none;border:0;border-radius:6px;padding:5px 6px;color:var(--ink);font-size:.88rem}
+.cl button:hover{background:var(--wd)}
+.cl .k{font-weight:700;min-width:1.4em;color:var(--acc)}
+.cl li.done .t{text-decoration:line-through;color:var(--muted)}
+.cl li.done .k::after{content:" ✓";color:var(--ok)}
+#kb{position:fixed;left:0;bottom:0;width:1px;height:1px;opacity:0;font-size:16px;border:0;padding:0}
+#win{position:fixed;inset:0;background:rgba(10,18,32,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
+#win.show{display:flex}
+#win div{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:24px;max-width:340px;text-align:center}
+#win h2{margin:0 0 8px}
+#win p{margin:0 0 16px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Teka-Teki Silang Matematika</h1>
+<p>Kelas 8: Teorema Pythagoras dan PLSV. Ketuk kotak untuk mulai mengisi.</p>
+</header>
+<div class="bar" id="bar" aria-live="polite"></div>
+<div class="prog"><span id="pt">0 dari 14 kata benar</span><div class="track"><i id="pb"></i></div></div>
+<div class="wrap"><div id="grid" role="grid" aria-label="Papan teka-teki silang"></div></div>
+<div class="btns">
+<button class="btn p" id="chk">Periksa jawaban</button>
+<button class="btn" id="hnt">Beri petunjuk</button>
+<button class="btn" id="rst">Mulai ulang</button>
+<span id="msg"></span>
+</div>
+<div class="clues">
+<section class="cl"><h2>Mendatar</h2><ol id="cA"></ol></section>
+<section class="cl"><h2>Menurun</h2><ol id="cD"></ol></section>
+</div>
+</main>
+<input id="kb" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" aria-label="Ketik jawaban">
+<div id="win" role="dialog" aria-modal="true"><div><h2>Selesai, hebat!</h2><p id="wt"></p><button class="btn p" id="again">Main lagi</button></div></div>
+<script>
+const D=[
+["PYTHAGORAS",2,0,"D","Matematikawan Yunani yang namanya dipakai untuk teorema sisi segitiga siku-siku","a² + b² = c², dengan c sebagai sisi miring."],
+["HIPOTENUSA",4,3,"D","Sisi miring pada segitiga siku-siku","Sisi terpanjang, selalu berhadapan dengan sudut siku-siku."],
+["SEGITIGA",5,7,"A","Bangun datar bersisi tiga; Pythagoras berlaku pada jenis yang bersudut siku-siku","Jumlah ketiga sudut segitiga selalu 180°."],
+["KUADRAT",7,8,"D","Hasil kali suatu bilangan dengan dirinya sendiri (pangkat dua)","Contoh: 5² = 25, dan √25 = 5."],
+["TRIPEL",11,7,"A","Tiga bilangan bulat positif yang memenuhi a² + b² = c², misalnya 3, 4, 5: … Pythagoras","Contoh lain: 5, 12, 13 dan 8, 15, 17."],
+["SIKU",11,0,"A","Sudut yang besarnya 90° disebut sudut …","Segitiga yang punya sudut 90° disebut segitiga siku-siku."],
+["AKAR",13,3,"A","Kebalikan dari kuadrat; √49 = 7","Mencari sisi miring: c = √(a² + b²)."],
+["VARIABEL",3,4,"A","Huruf pengganti bilangan yang belum diketahui, seperti x","Pada 2x + 3 = 11, variabelnya adalah x."],
+["KONSTANTA",0,14,"D","Suku yang tidak memuat variabel, misalnya 7 pada 2x + 7","Pada 2x + 7 = 15, konstantanya 7 dan 15."],
+["KOEFISIEN",1,10,"D","Angka yang mengalikan variabel, misalnya 3 pada 3x","Pada 3x, koefisiennya 3. Pada x, koefisiennya 1."],
+["PERSAMAAN",9,2,"A","Kalimat matematika yang memuat tanda sama dengan (=)","Persamaan 2x + 3 = 11 bernilai benar saat x = 4."],
+["LINIER",4,12,"D","Variabel berpangkat satu: persamaan … satu variabel","Variabelnya berpangkat satu, bukan x² atau x³."],
+["RUAS",7,6,"D","Bagian di sebelah kiri atau kanan tanda sama dengan","Kedua ruas boleh ditambah, dikurang, dikali, atau dibagi dengan bilangan yang sama."],
+["SUKU",1,8,"A","Bagian bentuk aljabar yang dipisahkan tanda + atau −","Pada 4x − 5, suku-sukunya adalah 4x dan −5."]
+];
+const R=14,C=15,$=id=>document.getElementById(id);
+const cells={},nums={},wc=D.map(([w,r,c,d])=>[...w].map((ch,k)=>(d=="A"?r:r+k)+","+(d=="A"?c+k:c)));
+D.forEach(([w,r,c,d],i)=>[...w].forEach((ch,k)=>{const key=wc[i][k],[rr,cc]=key.split(",").map(Number);(cells[key]??={r:rr,c:cc,ch,v:"",st:"",w:{}}).w[d]=i}));
+let n=0;
+for(let r=0;r<R;r++)for(let c=0;c<C;c++){let s=false;D.forEach(([w,rr,cc],i)=>{if(rr==r&&cc==c){s=true;nums[i]=n+1}});if(s)n++}
+const grid=$("grid");
+for(let r=0;r<R;r++)for(let c=0;c<C;c++){
+const key=r+","+c,el=document.createElement("div"),cl=cells[key];el.className="cell";
+if(cl){el.classList.add("on");cl.el=el;el.dataset.k=key;
+const nn=Object.values(cl.w).map(i=>D[i]).filter(x=>x[1]==r&&x[2]==c).length?Object.entries(cl.w).map(([d,i])=>D[i][1]==r&&D[i][2]==c?nums[i]:0).find(Boolean):0;
+if(nn){const s=document.createElement("span");s.className="n";s.textContent=nn;el.append(s)}
+cl.l=document.createTextNode("");el.append(cl.l);
+el.addEventListener("click",()=>pick(key,true))}
+grid.append(el)}
+let cur="2,0",dir="D",hints=0;
+const solved=i=>wc[i].every(k=>cells[k].v==cells[k].ch);
+function pick(key,fromClick){const c=cells[key];
+if(fromClick&&key==cur&&c.w.A!=null&&c.w.D!=null)dir=dir=="A"?"D":"A";
+else if(c.w[dir]==null)dir=dir=="A"?"D":"A";
+cur=key;render();$("kb").focus({preventScroll:true});$("kb").value="·"}
+function render(){
+const act=cells[cur].w[dir];
+for(const k in cells){const c=cells[k];c.el.classList.toggle("wd",wc[act].includes(k));c.el.classList.toggle("cur",k==cur);
+c.el.classList.toggle("ok",c.st=="ok");c.el.classList.toggle("bad",c.st=="bad");c.l.nodeValue=c.v}
+const b=$("bar");b.innerHTML="";const h=document.createElement("div");
+h.innerHTML="<b>"+nums[act]+" "+(dir=="A"?"Mendatar":"Menurun")+"</b> ("+D[act][0].length+" huruf)<br>";
+h.append(D[act][4]);b.append(h);
+if(solved(act)){const t=document.createElement("div");t.className="note";t.textContent="Ingat: "+D[act][5];b.append(t)}
+let done=0;D.forEach((x,i)=>{const s=solved(i);if(s)done++;const li=$("c"+x[3]).querySelector('[data-i="'+i+'"]');if(li)li.classList.toggle("done",s)});
+$("pt").textContent=done+" dari "+D.length+" kata benar";$("pb").style.width=done/D.length*100+"%";
+return done}
+["A","D"].forEach(d=>D.map((x,i)=>[x,i]).filter(([x])=>x[3]==d).sort((a,b)=>nums[a[1]]-nums[b[1]]).forEach(([x,i])=>{
+const li=document.createElement("li");li.dataset.i=i;const bt=document.createElement("button");
+bt.innerHTML='<span class="k"></span><span class="t"></span>';bt.children[0].textContent=nums[i];bt.children[1].textContent=x[4];
+bt.addEventListener("click",()=>{dir=d;pick(wc[i].find(k=>!cells[k].v)||wc[i][0]);window.scrollTo({top:0,behavior:"smooth"})});
+li.append(bt);$("c"+d).append(li)}));
+function step(f){const act=cells[cur].w[dir],ws=wc[act],i=ws.indexOf(cur),j=i+f;if(j>=0&&j<ws.length)cur=ws[j]}
+function typeCh(ch){const c=cells[cur];c.v=ch;c.st="";$("msg").textContent="";
+step(1);const done=render();if(done==D.length)finish()}
+function back(){const c=cells[cur];if(c.v){c.v="";c.st=""}else{step(-1);cells[cur].v="";cells[cur].st=""}render()}
+$("kb").addEventListener("input",e=>{const v=e.target.value.replace("·","");e.target.value="·";
+if(!v)back();else{const l=[...v].pop().toUpperCase();if(/^[A-Z]$/.test(l))typeCh(l)}});
+document.addEventListener("keydown",e=>{
+const m={ArrowRight:[0,1,"A"],ArrowLeft:[0,-1,"A"],ArrowDown:[1,0,"D"],ArrowUp:[-1,0,"D"]}[e.key];
+if(m){e.preventDefault();const c=cells[cur],k=(c.r+m[0])+","+(c.c+m[1]);if(cells[k]){dir=cells[k].w[m[2]]!=null?m[2]:dir;pick(k)}}
+else if(e.key==" "&&e.target.id=="kb"){e.preventDefault();dir=dir=="A"?"D":"A";if(cells[cur].w[dir]==null)dir=dir=="A"?"D":"A";render()}});
+$("chk").onclick=()=>{let bad=0,fill=0;for(const k in cells){const c=cells[k];if(c.v){fill++;c.st=c.v==c.ch?"ok":"bad";if(c.st=="bad")bad++}}
+$("msg").textContent=!fill?"Isi beberapa huruf dulu.":bad?bad+" huruf salah, perbaiki yang merah.":"Semua huruf yang terisi sudah benar.";render()};
+$("hnt").onclick=()=>{const c=cells[cur];if(c.v==c.ch)return;c.v=c.ch;c.st="ok";hints++;$("msg").textContent="Petunjuk dipakai: "+hints;step(1);const d=render();if(d==D.length)finish()};
+function reset(){for(const k in cells){cells[k].v="";cells[k].st=""}hints=0;$("msg").textContent="";$("win").classList.remove("show");cur="2,0";dir="D";render()}
+$("rst").onclick=reset;$("again").onclick=reset;
+function finish(){$("wt").textContent="Semua "+D.length+" kata benar. Petunjuk dipakai: "+hints+".";$("win").classList.add("show")}
+render();
+</script>
+</body>
+</html>
